@@ -1,0 +1,9 @@
+[Unit]
+Description=Disable Raspberry Pi LEDs
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo default-on | tee /sys/class/leds/ACT/trigger && echo 1 | tee /sys/class/leds/ACT/brightness && echo default-on | tee /sys/class/leds/PWR/trigger && echo 1 | tee /sys/class/leds/PWR/brightness && /home/pi/worker/lan951x-led-ctl/lan951x-led-ctl --fdx=1 --lnk=1 --spd=1 && /home/pi/worker/lan951x-led-ctl/lan951x-led-ctl --fdx=s --lnk=s --spd=s'
+
+[Install]
+WantedBy=multi-user.target
